@@ -6,7 +6,7 @@ import re
 import webbrowser as wb
 
 URL = "http://www.google.com"
-SEARCH_TERM = "giraffe"
+SEARCH_TERM = "google"
 
 SEARCH_PATTERNS = [SEARCH_TERM.title(), SEARCH_TERM.upper(),
         SEARCH_TERM.lower()]
@@ -45,13 +45,13 @@ class page_monitor_agent:
                     return str(matches[0]).strip()
 
 
-    def monitor(self, url, number_of_iterations, search_pattern, check_frequency_minutes):
+    def monitor(self, url, number_of_iterations, search_patterns, check_frequency_minutes):
         running = True
         failsafe = 0
         while running:
-            for i, _ in enumerate(search_pattern):
-                print(i)
-                page_check = self.check_page(url, USER_AGENTS, search_pattern[i])
+            for i, search_pattern in enumerate(search_patterns):
+                print(f'{i}. Checking for "{search_pattern}" on page: {url}')
+                page_check = self.check_page(url, USER_AGENTS, search_pattern)
                 if page_check:
                     print(page_check)
                     wb.open(URL)
@@ -62,7 +62,7 @@ class page_monitor_agent:
                     if failsafe >= number_of_iterations:
                         running = False
 
-            print(f"Checked sleeping for {str(check_frequency_minutes)} minutes")
+            print(f"Check Again in {str(check_frequency_minutes)} minutes")
             sleep(check_frequency_minutes * 60)
 
 
