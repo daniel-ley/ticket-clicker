@@ -21,7 +21,7 @@ HOURS_TO_RUN = 12
 NUMBER_OF_ITERATIONS = (HOURS_TO_RUN * 60) / CHECK_FREQUENCY_MINUTES
 
 
-class page_monitor_agent:
+class PageMonitorAgent:
     def __init__(self, page, iterations, search, freq):
         self.page = page
         self.iterations = iterations
@@ -67,7 +67,7 @@ class page_monitor_agent:
 
 
 if __name__ == "__main__":
-    monitor_agent = page_monitor_agent(URL, NUMBER_OF_ITERATIONS, 
+    monitor_agent = PageMonitorAgent(URL, NUMBER_OF_ITERATIONS, 
                                         SEARCH_PATTERNS, 
                                         CHECK_FREQUENCY_MINUTES)
 
