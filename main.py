@@ -22,6 +22,9 @@ NUMBER_OF_ITERATIONS = (HOURS_TO_RUN * 60) / CHECK_FREQUENCY_MINUTES
 
 
 class PageMonitorAgent:
+    """ Page Monitor Agent.  Request page at a regular interval, and opens
+    in a browser session when a match to the seartch pattern is found."""
+
     def __init__(self, page, iterations, search, freq):
         self.page = page
         self.iterations = iterations
@@ -70,4 +73,3 @@ if __name__ == "__main__":
     monitor_agent = PageMonitorAgent(URL, NUMBER_OF_ITERATIONS, 
                                         SEARCH_PATTERNS, 
                                         CHECK_FREQUENCY_MINUTES)
-
